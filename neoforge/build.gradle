@@ -13,11 +13,6 @@ neoForge {
         accessTransformers.from(at.absolutePath)
     }
 
-    parchment {
-        minecraftVersion = project.parchment_minecraft_version
-        mappingsVersion = project.parchment_version
-    }
-
     runs {
         configureEach {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
@@ -46,6 +41,7 @@ neoForge {
 }
 
 dependencies {
+    // ash_api supplies the config + in-game options screen (registered via IConfigScreenFactory).
     if (project.ash_version != "") {
         implementation "com.diontryban.ash_api:ash_api-neoforge:${project.ash_version}"
     }

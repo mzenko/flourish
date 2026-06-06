@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
 }
 
 repositories {
@@ -12,21 +12,18 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // No 'mappings' line: Minecraft 26.1+ ships unobfuscated with Mojang names + param names.
 
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.parchment_minecraft_version}:${project.parchment_version}@zip")
-    }
+    implementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
+    // ash_api supplies the config + in-game options screen (and its Mod Menu integration).
     if (project.ash_version != "") {
-        modImplementation "com.diontryban.ash_api:ash_api-fabric:${project.ash_version}"
+        implementation "com.diontryban.ash_api:ash_api-fabric:${project.ash_version}"
     }
 
     if (project.modmenu_version != "") {
-        modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+        implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     }
 
 
@@ -36,10 +33,6 @@ loom {
     def aw = project(':common').file("src/main/resources/${project.mod_id}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
-    }
-
-    mixin {
-        defaultRefmapName.set("${project.mod_id}.refmap.json")
     }
 
     runs {

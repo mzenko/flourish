@@ -1,14 +1,14 @@
 modLoader = "javafml" #mandatory
 loaderVersion = "${neoforge_loader_version_range}" #mandatory
 license = "${license}" # Review your options at https://choosealicense.com/.
-issueTrackerURL="https://github.com/Trikzon/armor-visibility/issues/" #optional
+issueTrackerURL="https://github.com/Trikzon/flourish/issues/" #optional
 
 [[mods]] #mandatory
 modId = "${mod_id}" #mandatory
 version = "${version}" #mandatory
 displayName = "${mod_name}" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional (see https://docs.neoforged.net/docs/misc/updatechecker/)
-displayURL="https://modrinth.com/mod/armor-visibility/" #optional (displayed in the mod UI)
+displayURL="https://modrinth.com/mod/flourish/" #optional (displayed in the mod UI)
 logoFile="${mod_id}.png" #optional
 credits="${credits}" #optional
 authors = "${mod_author}" #optional
@@ -23,7 +23,7 @@ config = "${mod_id}.neoforge.mixins.json"
 [[dependencies.${mod_id}]] #optional
 modId = "neoforge" #mandatory
 type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
-versionRange = "${neoforge_version}" #mandatory
+versionRange = "${neoforge_version_range}" #mandatory (range admits 26.1.2 beta + stable builds)
 ordering = "NONE" # The order that this dependency should load in relation to your mod, required to be either 'BEFORE' or 'AFTER' if the dependency is not mandatory
 side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
 
@@ -37,7 +37,7 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "ash_api"
 type = "required"
-versionRange = "${ash_version}"
+versionRange = "[${ash_version},)"
 ordering = "NONE"
 side = "BOTH"
 

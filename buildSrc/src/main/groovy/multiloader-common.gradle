@@ -14,6 +14,7 @@ java {
 }
 
 repositories {
+    mavenLocal() // ash_api is consumed from the local maven repo during development
     mavenCentral()
     exclusiveContent {
         forRepository {
@@ -24,26 +25,9 @@ repositories {
         }
         filter { includeGroupAndSubgroups('org.spongepowered') }
     }
-    exclusiveContent {
-        forRepositories(
-            maven {
-                name = 'ParchmentMC'
-                url = 'https://maven.parchmentmc.org/'
-            },
-            maven {
-                name = 'NeoForge'
-                url = 'https://maven.neoforged.net/releases'
-            }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
     maven {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
-    }
-    maven {
-        name = 'DionTryban'
-        url = 'https://maven.diontryban.com/releases'
     }
 }
 
@@ -97,13 +81,12 @@ processResources {
             'minecraft_version'            : project.minecraft_version,
             'minecraft_version_range'      : project.minecraft_version_range,
             'neoform_version'              : project.neoform_version,
-            'parchment_minecraft_version'  : project.parchment_minecraft_version,
-            'parchment_version'            : project.parchment_version,
             'ash_version'                  : project.ash_version,
             'fabric_version'               : project.fabric_version,
             'fabric_loader_version'        : project.fabric_loader_version,
             'modmenu_version'              : project.modmenu_version,
             'neoforge_version'             : project.neoforge_version,
+            'neoforge_version_range'       : project.neoforge_version_range,
             'neoforge_loader_version_range': project.neoforge_loader_version_range,
     ]
 
